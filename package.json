@@ -11,11 +11,18 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "build:client": "node build/build.js",
+    "build:server": "cross-env NODE_ENV=production webpack --config build/webpack.server.conf.js --progress --hide-modules",
+    "build": "rimraf dist && npm run build:client && npm run build:server"
   },
   "dependencies": {
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "cross-env": "^5.2.0",
+    "koa-static": "^5.0.0",
+    "koa2": "^2.0.0-alpha.7",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vue-server-renderer": "^2.5.17",
+    "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
